@@ -3,6 +3,8 @@ use std::fs;
 use std::io;
 use std::collections::HashMap;
 use std::iter;
+use std::ops;
+use rand;
 
 fn read_lines(file_path: &str) -> Vec<String> {
     fs::read_to_string(file_path)
@@ -52,8 +54,12 @@ fn print_game_state(answer: &str, guesses: &Vec<String>) -> () {
     }
 }
 
+const WORD_RANGE: ops::RangeInclusive<usize> = 500..=1000;
+
 fn main() {
     let words = read_lines("data/words.txt");
+    let answer = &words[rand::random_range(WORD_RANGE)];
+
     let mut guesses = Vec::new();
     loop {
         let mut guess = String::new();
@@ -64,8 +70,11 @@ fn main() {
             .trim()
             .to_string();
         if words.iter().any(|word| word == &guess) {
-            guesses.push(guess);
-            print_game_state("hello", &guesses);
+            guesses.push(guess.clone());
+            print_game_state(answer, &guesses);
+            println!();
         }
+        if guess == *answer { break; }
     }
+    println!("Well done, you got the word in {} guesses!", guesses.len());
 }
