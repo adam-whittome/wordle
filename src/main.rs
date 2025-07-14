@@ -70,11 +70,11 @@ fn main() {
             .trim()
             .to_string();
         if words.iter().any(|word| word == &guess) {
-            guesses.push(guess.clone());
+            guesses.push(guess);
             print_game_state(answer, &guesses);
             println!();
         }
-        if guess == *answer { break; }
+        if *guesses.last().unwrap() == *answer { break; }
     }
     println!("Well done, you got the word in {} guesses!", guesses.len());
 }
