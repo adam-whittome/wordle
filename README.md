@@ -1,5 +1,5 @@
 # Wordle
-This is my first program written in rust, which I am currently learning to use.
+This is my first program written in rust, which I was learning to use.
 It uses a dictionary of 5 letter words available [here](https://github.com/cheaderthecoder/5-Letter-words).
 ## To use
 Compile the source code, and run the program in the command line.
